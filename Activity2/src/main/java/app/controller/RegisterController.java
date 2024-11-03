@@ -1,0 +1,36 @@
+package app.controller;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import app.model.User;
+
+/**
+ * Servlet implementation class RegisterController
+ */
+public class RegisterController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		User user = new User();
+		user.setFirstname(request.getParameter("fname"));
+		user.setLastname(request.getParameter("lname"));
+		user.setUsername(request.getParameter("uname"));
+		user.setPassword(request.getParameter("password"));
+		request.setAttribute("usermodel", user);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/views/display.jsp");
+		dispatcher.forward(request, response);
+		
+	}
+
+}
